@@ -5,17 +5,18 @@ import java.util.regex.Pattern;
 
 public class Problem7 {
     static Map<String, List<String>> friendsAndMutualFriends; // 친구와, 함께 아는 친구
-    static Map<String, Integer> friendsAndCommendScore; // 친구와, 추천 점수
+    static Map<String, Integer> friendsAndRecommendScore; // 친구와, 추천 점수
     static List<String> userFriends;
 
     public static List<String> solution(String user, List<List<String>> friends, List<String> visitors) {
         friendsAndMutualFriends = new HashMap<>();
-        friendsAndCommendScore = new HashMap<>();
+        friendsAndRecommendScore = new HashMap<>();
         userFriends = new ArrayList<>();
 
         isUser(user, friends);
         validUserId(user, friends);
         validListSize(friends, visitors);
+        validRecommend(friendsAndRecommendScore);
 
         return userFriends;
     }
@@ -55,6 +56,18 @@ public class Problem7 {
             throw new IllegalArgumentException("친구리스트와 방문자리스트는 1이상 10000이하까지만 가능합니다.");
     }
 
+    // 추천친구 필수, 0점 제외 검사
+    public static void validRecommend(Map<String, Integer> friendsAndRecommendScore) {
+        if (friendsAndRecommendScore.isEmpty()) {
+            throw new IllegalArgumentException("추천할 친구가 없습니다.");
+        }
 
+        // 0점 제외
+        friendsAndRecommendScore.entrySet().removeIf(entry -> entry.getValue() == 0);
+
+        if (friendsAndRecommendScore.isEmpty()) {
+            throw new IllegalArgumentException("추천 점수가 0점인 친구는 추천할 수 없습니다.");
+        }
+    }
 
 }
