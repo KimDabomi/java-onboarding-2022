@@ -16,6 +16,7 @@ public class Problem7 {
         isUser(user, friends);
         validUserId(user, friends);
         validListSize(friends, visitors);
+        recommendFriends(user, friends, visitors);
         checkVisitors(visitors);
         validRecommend(friendsAndRecommendScore);
 
@@ -66,6 +67,20 @@ public class Problem7 {
 
         if (friendsAndRecommendScore.isEmpty()) {
             throw new IllegalArgumentException("추천 점수가 0점인 친구는 추천할 수 없습니다.");
+        }
+    }
+
+    // 추천 친구 추가
+    public static void recommendFriends(String user, List<List<String>> friends, List<String> visitors) {
+        for (List<String> friendPair : friends) {
+            String friend1 = friendPair.get(0);
+            String friend2 = friendPair.get(1);
+
+            if (userFriends.contains(friend1) && !userFriends.contains(friend2) && !friend2.equals(user)) {
+                friendsAndRecommendScore.put(friend2, friendsAndRecommendScore.getOrDefault(friend2, 0) + 10);
+            } else if (userFriends.contains(friend2) && !userFriends.contains(friend1) && !friend1.equals(user)) {
+                friendsAndRecommendScore.put(friend1, friendsAndRecommendScore.getOrDefault(friend1, 0) + 10);
+            }
         }
     }
 
