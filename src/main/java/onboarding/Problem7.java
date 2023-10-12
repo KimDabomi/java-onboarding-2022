@@ -15,6 +15,7 @@ public class Problem7 {
 
         isUser(user, friends);
         validUserId(user, friends);
+        validListSize(friends, visitors);
 
         return userFriends;
     }
@@ -46,6 +47,12 @@ public class Problem7 {
                 }
             }
         }
+    }
+
+    // 친구리스트, 방문자리스트 길이 검사
+    public static void validListSize (List<List<String>> friends, List<String> visitors) {
+        if(!(friends.size() >= 1 && friends.size() <= 10) || !(visitors.size() >= 1 && visitors.size() <= 10000))
+            throw new IllegalArgumentException("친구리스트와 방문자리스트는 1이상 10000이하까지만 가능합니다.");
     }
 
 
