@@ -19,7 +19,7 @@ public class Problem7 {
         checkVisitors(visitors);
         validRecommend(friendsAndRecommendScore);
 
-
+        List<String> answer = getTopRecommendations();
 
         return answer;
     }
@@ -74,6 +74,23 @@ public class Problem7 {
         for (String visitor : visitors) {
             friendsAndRecommendScore.put(visitor, friendsAndRecommendScore.getOrDefault(visitor, 0) + 1);
         }
+    }
+
+    // 추천점수 높은 사람들 가져와서 정렬
+    public static List<String> getTopRecommendations() {
+        List<String> sortedRecommendations = new ArrayList<>(friendsAndRecommendScore.keySet());
+
+        sortedRecommendations.sort((user1, user2) -> {
+            int score1 = friendsAndRecommendScore.get(user1);
+            int score2 = friendsAndRecommendScore.get(user2);
+
+            if (score1 == score2) {
+                return user1.compareTo(user2);
+            }
+            return score2 - score1;
+        });
+
+        return sortedRecommendations;
     }
 
 }
