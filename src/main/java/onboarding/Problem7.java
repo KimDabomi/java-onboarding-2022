@@ -14,7 +14,7 @@ public class Problem7 {
         userFriends = new ArrayList<>();
 
         isUser(user, friends);
-
+        validUserId(user, friends);
 
         return userFriends;
     }
@@ -29,6 +29,21 @@ public class Problem7 {
                 userFriends.add(friend2);
             } else if (friend2.equals(user)) {
                 userFriends.add(friend1);
+            }
+        }
+    }
+
+    // 아이디 길이, 소문자 검사
+    public static void validUserId (String user, List<List<String>> friends) {
+        for (List<String> friend : friends) {
+            String friend1 = friend.get(0);
+            String friend2 = friend.get(1);
+            String[] UserIds = {user, friend1, friend2};
+
+            for (String UserId : UserIds) {
+                if(!(Pattern.compile("^[a-z]*$").matcher(UserId).matches() && (UserId.length() >= 1 && UserId.length() <= 30))) {
+                    throw new IllegalArgumentException("사용자 아이디는 1 이상 30 이하의 소문자여야 합니다.");
+                }
             }
         }
     }
