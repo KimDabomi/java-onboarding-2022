@@ -16,9 +16,12 @@ public class Problem7 {
         isUser(user, friends);
         validUserId(user, friends);
         validListSize(friends, visitors);
+        checkVisitors(visitors);
         validRecommend(friendsAndRecommendScore);
 
-        return userFriends;
+
+
+        return answer;
     }
 
     // User 제외
@@ -56,17 +59,20 @@ public class Problem7 {
             throw new IllegalArgumentException("친구리스트와 방문자리스트는 1이상 10000이하까지만 가능합니다.");
     }
 
-    // 추천친구 필수, 0점 제외 검사
+    // 추천점수 0점 제외 검사
     public static void validRecommend(Map<String, Integer> friendsAndRecommendScore) {
-        if (friendsAndRecommendScore.isEmpty()) {
-            throw new IllegalArgumentException("추천할 친구가 없습니다.");
-        }
-
         // 0점 제외
         friendsAndRecommendScore.entrySet().removeIf(entry -> entry.getValue() == 0);
 
         if (friendsAndRecommendScore.isEmpty()) {
             throw new IllegalArgumentException("추천 점수가 0점인 친구는 추천할 수 없습니다.");
+        }
+    }
+
+    // 방문할 때마다 1점씩
+    public static void checkVisitors(List<String> visitors) {
+        for (String visitor : visitors) {
+            friendsAndRecommendScore.put(visitor, friendsAndRecommendScore.getOrDefault(visitor, 0) + 1);
         }
     }
 
