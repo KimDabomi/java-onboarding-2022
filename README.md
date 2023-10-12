@@ -1,1 +1,1 @@
-# wtc5th-java-onboarding
+# 우테코 5기의 프리코스를 연습한 저장소
