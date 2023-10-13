@@ -32,7 +32,7 @@ public class Exception {
 
     public static void isValidEmail(String email, String domain, int min_len, int max_len) {
         if (!(email.endsWith(domain) || (email.length() >= min_len && email.length() < max_len)))
-            throw new IllegalArgumentException(domain + " 도메인으로만 신청가능합니다. 이메일의 전체 길이는 " + min_len + "자 이상 " + max_len + "자 미만이여야 합니다.");
+            throw new IllegalArgumentException(domain + " 도메인으로만 신청가능합니다. 이메일의 전체 길이는 " + min_len + "자 이상 " + max_len + "자 미만만 가합니다.");
     }
 
     public static void isValidDoubleListSize (List<List<String> > doubleList, int min_size, int max_size) {
@@ -67,7 +67,7 @@ public class Exception {
 
             for (String UserId : UserIds) {
                 if(!(Pattern.compile("^[a-z]*$").matcher(UserId).matches() && (UserId.length() >= min_len && UserId.length() <= max_len))) {
-                    throw new IllegalArgumentException(UserId + "는 " + min_len + " 이상 " + max_len +" 이하의 소문자만 가능합니다.");
+                    throw new IllegalArgumentException("아이디는 " + min_len + " 이상 " + max_len +" 이하의 소문자만 가능합니다.");
                 }
             }
         }
