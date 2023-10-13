@@ -84,6 +84,7 @@ public class Problem7 {
         }
     }
 
+
     // 방문할 때마다 1점씩
     public static void checkVisitors(List<String> visitors) {
         for (String visitor : visitors) {
@@ -94,6 +95,8 @@ public class Problem7 {
     // 추천점수 높은 사람들 가져와서 정렬
     public static List<String> getTopRecommendations() {
         List<String> sortedRecommendations = new ArrayList<>(friendsAndRecommendScore.keySet());
+
+        sortedRecommendations.removeAll(userFriends);
 
         sortedRecommendations.sort((user1, user2) -> {
             int score1 = friendsAndRecommendScore.get(user1);
