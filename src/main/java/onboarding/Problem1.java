@@ -4,28 +4,26 @@ import java.util.List;
 import java.util.stream.Stream;
 
 class Problem1 {
+    static final int MAX_PAGE = 2;
     public static int solution(List<Integer> pobi, List<Integer> crong) {
         int answer = Integer.MAX_VALUE;
-        int maxPobi = maxScore(pobi);
-        int maxCrong = maxScore(crong);
-
-        if (maxPobi == maxCrong)
-            answer = 0;
-        else if (maxPobi > maxCrong)
-            answer = 1;
-        else
-            answer = 2;
-
 
         if (isException(pobi) || isException(crong)) {
             System.out.println("페이지는 연속해야 합니다.");
-            answer = -1;
+            return -1;
         }
 
         if (!(RightLength(pobi) && RightLength(crong))) {
             System.out.println("페이지의 개수는 2개여야 합니다.");
-            answer = -1;
+            return -1;
         }
+
+        if (maxScore(pobi) > maxScore(crong))
+            answer = 1;
+        else if (maxScore(pobi) < maxScore(crong))
+            answer = 2;
+        else
+            answer = 0;
 
         return answer;
     }
@@ -35,7 +33,7 @@ class Problem1 {
     }
 
     public static boolean RightLength (List<Integer> ListPage) {
-        return ListPage.size() == 2;
+        return ListPage.size() == MAX_PAGE;
     }
 
     public static int getScore (int page) {
@@ -44,13 +42,13 @@ class Problem1 {
                 .toArray();
 
         int sum = 0;
-        int time = 1;
+        int multi = 1;
         for (int i = 0; i < arrDigits.length; i++) {
             sum += arrDigits[i];
-            time *= arrDigits[i];
+            multi *= arrDigits[i];
         }
 
-        return Math.max(sum, time);
+        return Math.max(sum, multi);
     }
 
     public static int maxScore (List<Integer> pages) {
