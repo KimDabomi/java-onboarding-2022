@@ -16,10 +16,9 @@ public class Problem6 {
             String nickname = crewForm.get(1);
 
             Exception.isValidEmail(email,"@email.com", 11, 20);
-            Exception.isValidCrewSize(forms, 1, 10000);
+            Exception.isValidDoubleListSize(forms, 1, 10000);
             Exception.rangeString(nickname, 1, 20);
             Exception.isValidNickname(nickname);
-
 
             checkingNickname(nickname, email);
         }
@@ -53,11 +52,4 @@ public class Problem6 {
             }
         }
     }
-
-
-
-
-
-
-
 }
