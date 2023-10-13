@@ -3,12 +3,15 @@ package onboarding;
 public class Problem4 {
     public static String solution(String word) {
         char[] answer = word.toCharArray();
-        char[] arrLower = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-        char[] arrUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+        char[] arrLower = new char[26];
+        char[] arrUpper = new char[26];
 
-        if (word.isEmpty() || word.length() > 1000)
-            throw new IllegalArgumentException("word 길이가 1이상 1000이하여야 합니다.");
+        for (int i = 0; i < 26; i++) {
+            arrLower[i] = (char) ('a' + i);
+            arrUpper[i] = (char) ('A' + i);
+        }
 
+        Exception.rangeString(word,1,1000);
 
         for (int j = 0; j < answer.length; j++) {
             if (answer[j] >= 'A' && answer[j] <= 'Z') {
