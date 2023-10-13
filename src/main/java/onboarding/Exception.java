@@ -17,4 +17,11 @@ public class Exception {
             throw new IllegalArgumentException(number + "는 " + min_num + " 이상 " + max_num + " 이하인 자연수가 아닙니다.");
     }
 
+    public static void rangeString (String str, int min_len, int max_len) {
+        if (str.length() < min_len || str.length() > max_len)
+            throw new IllegalArgumentException(str + "의 길이가 " + min_len +" 이상 " + max_len + " 이하가 아닙니다.");
+
+    }
+
+
 }
