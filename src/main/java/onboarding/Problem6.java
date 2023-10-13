@@ -15,14 +15,11 @@ public class Problem6 {
             String email = crewForm.get(0);
             String nickname = crewForm.get(1);
 
-            if (!validCrewSize(forms))
-                throw new IllegalArgumentException("크루는 1명 이상 10,000명 이하여야 합니다.");
+            Exception.isValidEmail(email,"@email.com", 11, 20);
+            Exception.isValidCrewSize(forms, 1, 10000);
+            Exception.rangeString(nickname, 1, 20);
+            Exception.isValidNickname(nickname);
 
-            if (!validEmail(email))
-                throw new IllegalArgumentException("email.com 도메인으로만 신청가능합니다. 이메일의 전체 길이는 11자 이상 20자 미만이여야 합니다.");
-
-            if (!validNickname(nickname))
-                throw new IllegalArgumentException("닉네임은 한글만 가능하고 전체 길이는 1자 이상 20자 미만이여야 합니다.");
 
             checkingNickname(nickname, email);
         }
@@ -57,16 +54,10 @@ public class Problem6 {
         }
     }
 
-    private static boolean validEmail(String email) {
-        return email.endsWith("@email.com") && email.length() >= 11 && email.length() < 20;
-    }
 
-    private static boolean validCrewSize (List<List<String> > forms) {
-        return forms.size() >=1 && forms.size() <= 10000;
-    }
 
-    private static boolean validNickname (String nickname) {
-        return Pattern.compile("^[가-힣]*$").matcher(nickname).matches() && nickname.length() >= 1 && nickname.length() < 20;
-    }
+
+
+
 
 }

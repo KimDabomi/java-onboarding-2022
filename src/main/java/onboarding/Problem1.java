@@ -5,18 +5,16 @@ import java.util.stream.Stream;
 
 
 class Problem1 {
-    static final int MAX_PAGE = 2;
+    static final int PAGE_SIZE = 2;
 
     public static int solution(List<Integer> pobi, List<Integer> crong) {
         int answer = 0;
 
         if (Exception.isException(pobi) || Exception.isException(crong)) {
-            System.out.println("페이지는 연속해야 합니다.");
             return -1;
         }
 
-        if (!(Exception.rightLength(pobi, MAX_PAGE) && Exception.rightLength(crong, MAX_PAGE))) {
-            System.out.println("페이지의 개수는 2개여야 합니다.");
+        if (!(Exception.sizeOfList(pobi, PAGE_SIZE) && Exception.sizeOfList(crong, PAGE_SIZE))) {
             return -1;
         }
 
