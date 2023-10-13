@@ -15,7 +15,7 @@ class Problem1 {
             return -1;
         }
 
-        if (!(Exception.RightLength(pobi, MAX_PAGE) && Exception.RightLength(crong, MAX_PAGE))) {
+        if (!(Exception.rightLength(pobi, MAX_PAGE) && Exception.rightLength(crong, MAX_PAGE))) {
             System.out.println("페이지의 개수는 2개여야 합니다.");
             return -1;
         }

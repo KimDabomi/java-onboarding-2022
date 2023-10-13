@@ -4,8 +4,7 @@ public class Problem3 {
     public static int solution(int number) {
         int answer = 0;
 
-        if (number < 1 || number > 10000)
-            throw new IllegalArgumentException("number는 1이상 10,000이하인 자연수여야 합니다.");
+        Exception.rangeNumber(number,1,10000);
 
         for (int i = 1; i <= number; i++) {
             int temp = i;
